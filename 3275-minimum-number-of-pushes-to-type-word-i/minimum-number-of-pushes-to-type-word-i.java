@@ -1,3 +1,4 @@
+#solution
 class Solution {
     public int minimumPushes(String word) {
         int freq[]=new int[8];
