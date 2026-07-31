@@ -1,3 +1,5 @@
+//solution
+
 class Solution {
     public int minimumPushes(String word) {
         HashMap<Character, Integer> hm = new HashMap<>();
