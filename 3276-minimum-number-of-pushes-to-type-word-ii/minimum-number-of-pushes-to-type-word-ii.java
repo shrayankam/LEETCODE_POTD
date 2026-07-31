@@ -1,46 +1,51 @@
 class Solution {
     public int minimumPushes(String word) {
-        HashMap<Character, Integer> hm=new HashMap<>();
-        int totalSum=0;
-        for(int i=0;i<word.length();i++){
-            char key=word.charAt(i);
-            hm.put(key, hm.getOrDefault(key, 0) + 1);
+     int freq[]=new int[26];
+     for(int i=0;i<word.length();i++)
+       {
+        freq[word.charAt(i)-'a']++;
+       }
+     countSort(freq);
+     int j=25;
+     int cnt=0;
+     int ans=0;
+     while(j>=0){
+        int t=freq[j];
+        if(t>0)
+           cnt++;
+        if(cnt<=8){
+          ans+=t;
+        }       
+        else if(cnt>8 && cnt<=16){
+           ans+=t*2;
         }
- 
+        else if(cnt>16 && cnt<=24)
+        { ans+=t*3;
 
-Map<Character, Integer> sortedMap = hm.entrySet()
-            .stream()
-            .sorted(Map.Entry.<Character, Integer>comparingByValue().reversed())
-            .collect(Collectors.toMap(
-                Map.Entry::getKey, 
-                Map.Entry::getValue, 
-                (e1, e2) -> e1, 
-                LinkedHashMap::new // Maintains the descending order
-            ));
-
-        // 2. Print the sorted letters and frequencies
-
-
-        int i=0;
-        for(Integer value:sortedMap.values()){
-            if(i<8){
-                totalSum+=value;
-                i++;
-            }
-            else if(i>=8 && i<16){
-                totalSum+=(value*2);
-                i++;
-            }else if(i>=16 && i<24){
-                totalSum+=(value*3);
-                i++;
-            }else{
-                totalSum+=(value*4);
-                i++;
+        }
+        else if(cnt>24 && cnt<=26) {
+             ans+=t*4;
+        }
+        j--;
+     }
+     return ans;
+    }
+    public void countSort(int[] nums){
+       int max=0;
+        for(int i=0;i<26;i++){
+        max=Math.max(nums[i],max);
+        }
+        int freq[]=new int[max+1];
+        for(int i=0;i<26;i++){
+            freq[nums[i]]++;
+        }
+        int j=0;
+        for(int i=0;i<max+1;i++){
+            while(freq[i]>0){
+                nums[j]=i;
+                freq[i]--;
+                j++;
             }
         }
-
-//         System.out.println(hm);
-        System.out.println(sortedMap); 
-        return totalSum;
     }
 }
