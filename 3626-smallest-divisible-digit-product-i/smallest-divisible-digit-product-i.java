@@ -1,6 +1,6 @@
 class Solution {
     public int smallestNumber(int n, int t) {
-        for (int i = n; ; i++) {
+        for (int i = n;i<=100 ; i++) {
             int prod = 1;
             int ans = i;
 
@@ -14,5 +14,6 @@ class Solution {
                 return i;
             }
         }
+        return 0;
     }
 }
