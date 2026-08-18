@@ -10,9 +10,12 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         
         for (int val : hm.values()) {
-            if (!set.add(val)) {
-                return false; 
-            }
+            if (set.contains(val)) {
+    return false; // Found duplicate
+} else {
+    set.add(val); // Not a duplicate, add it
+}
+
         }
         
         return true;
