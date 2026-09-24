@@ -1,40 +1,18 @@
-// class Solution {
-//     public int smallestIndex(int[] nums) {
-//         for(int i=0;i<nums.length;i++){
-//             int a=nums[i];
-//             int sum=0;
-//             while(a>0){
-//                 int rem=a%10;
-//                 sum+=rem;
-//                 a/=10;
-//             }
-
-//             if(sum==i){
-//                 return i;
-//             }
-//         } 
-//         return -1;
-//     }
-// }
-
 class Solution {
     public int smallestIndex(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-
-        int n = nums[i];
-            int sum = 0;
-
-            while (n > 0) {
-                int digit = n % 10;
-                sum = sum + digit;
-                n = n / 10;
+        for(int i=0;i<nums.length;i++){
+            int n=nums[i];
+            int sum=0;
+            while(n>0){
+                int rem=n%10;
+                sum+=rem;
+                n/=10;
             }
 
-            if (sum == i) {
+            if(sum==i){
                 return i;
             }
-        
-        }
+        } 
         return -1;
     }
 }
